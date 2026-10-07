@@ -1,0 +1,11 @@
+{
+  "name": "orsicreative-skills",
+  "owner": { "name": "Jeffrey Schierer" },
+  "plugins": [
+    {
+      "name": "dev-workflow",
+      "source": "./plugins/dev-workflow",
+      "description": "Epic planning, user-story implementation, and code audits."
+    }
+  ]
+}
