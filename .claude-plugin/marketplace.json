@@ -1,6 +1,7 @@
 {
   "name": "orsicreative-skills",
   "owner": { "name": "Jeffrey Schierer" },
+  "metadata": { "description": "Planning, building, and auditing skills for Claude Code." },
   "plugins": [
     {
       "name": "dev-workflow",
