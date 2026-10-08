@@ -80,7 +80,7 @@ For each story write:
 - **Story:** "As a ___, I want ___, so that ___", made specific to this project (real page/feature names). This is where you refine the epic's intent into the codebase.
 - **Acceptance criteria:** 2-4 concrete, testable outcomes. No implementation detail. Make sure criteria don't overlap between stories; if two stories would both build the same view, one owns it.
 - **Depends on:** earlier story numbers, or none.
-- **Flags:** any of `data model`, `migration`, `new dependency`, `permissions`, `frontend-design`. The first four are the things /user-story will stop and ask about, so flagging them now sets expectations. Flag `frontend-design` when the story builds a large new UI component or heavily reworks an existing one. Moving or lightly adjusting existing components doesn't qualify.
+- **Flags:** any of `data model`, `migration`, `new dependency`, `permissions`, `frontend-design`. The first four are the things /user-story will stop and ask about, so flagging them now sets expectations. Flag `frontend-design` when the story builds a large new UI component or heavily reworks an existing one, and always on the first UI story when the app has no established visual design yet (a new project). Moving or lightly adjusting existing components doesn't qualify.
 
 Aim for 3-8 stories. If you get past 8, the epic is probably two epics; say so and suggest where to split. Order stories so each one builds on what's already shipped, with the riskiest or most foundational first.
 
@@ -109,7 +109,7 @@ Acceptance criteria:
 - ...
 - ...
 [If the engineering review found shared code:] Shares code with story 4 (mark invoice as paid): both change invoice status handling in src/invoices.ts. Build after story 4, or this story owns that change and story 4 builds on it.
-[If frontend-design flagged:] If you are an AI agent executing this story, use /frontend-design for the new invoice list UI.
+[If frontend-design flagged:] If you are an AI agent executing this story, invoke the frontend-design skill (Skill tool) before building the new invoice list UI.
 ```
 
 **Assumptions** — every place the epic was silent and you picked an answer, one line each so the person can say "no, the other way."
@@ -144,7 +144,14 @@ Once posted, offer two ways forward:
 
   **Progress file.** Unless they said no, keep two files in `plans/<epic-slug>/` (when run from `/project-planning`, use the project's folder):
   - `plan.md`: the approved plan, exactly as shown, with every paste block. Written once at the start and rewritten only when the plan changes (a reconcile, a refine).
-  - `progress.json`: the run's state, updated after every step, before moving on:
+  - `progress.json`: the run's state. Write it at each of these points, before doing anything else, never batched to the end of the run:
+    1. Story starts: its status to `building`.
+    2. Story built (and committed, if commits are on): status `built`, its `commit`, and `next` to the following story.
+    3. Story stops: status `blocked` with a note.
+    4. Epic's code audit finished: `audit` to `done`, epic status `built`.
+    5. A frontend-design pass sets the visual direction: add a short "Design direction" section to `plan.md` (palette, type, layout feel) so later stories and resumed sessions follow it.
+
+    If you notice you've built a story without writing `progress.json`, write it now before continuing. Shape:
     ```json
     {
       "settings": { "reviewStops": "end", "commits": true, "branch": "reviews" },

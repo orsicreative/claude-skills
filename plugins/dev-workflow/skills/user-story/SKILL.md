@@ -33,7 +33,7 @@ Everything else: make a reasonable call, keep moving, and record it as an assump
 - Stay inside the story. No extra features, no refactors of unrelated code.
 - Keep the diff small and reviewable.
 - Prefer what the platform already provides before writing custom code.
-- If you are an AI agent executing this story and it builds a large new UI component or heavily reworks an existing one, use /frontend-design before building that UI. Moving or lightly adjusting existing components doesn't need it.
+- If you are an AI agent, invoke the `frontend-design` skill with the Skill tool (not by reading a file) before building UI when any of these hold: the story carries the `frontend-design` flag; it builds a large new UI component or heavily reworks an existing one; or the app has no established visual design yet (new project, default or unstyled markup), in which case this story sets the visual direction the rest follow. Moving or lightly adjusting existing components doesn't need it. If a design direction was already set (e.g. a "Design direction" section in the run's `plan.md`), follow it instead of inventing a new one.
 
 ## When finished, always end with these three sections
 
