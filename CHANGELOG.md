@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 — 2026-10-08
+- `/user-story`: frontend-design is invoked through the Skill tool (the old "/frontend-design" wording never fired during autorun). Also triggers on the `frontend-design` flag and on the first UI story of a project with no visual design yet.
+- `/epic-planning`: always flags `frontend-design` on the first UI story of a new project; autorun records the chosen design direction in `plan.md` so later stories follow it.
+- Autorun writes `progress.json` at explicit points (story start, built, blocked, audit done) instead of the vague "after every step".
+
 ## 1.1.0 — 2026-10-07
 - `/project-planning`: break a project into epics with paste-ready `/epic-planning` blocks, engineering review; tracker capture and optional autorun (plan only, or plan and build epic by epic).
 - `/plan-review`: engineering-manager review of epic/story order against the code (collisions, migration order, contract breaks, parallel lanes). Runs automatically in both planners.
