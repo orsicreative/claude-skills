@@ -3,6 +3,7 @@
 ## 1.1.1 — 2026-10-08
 - `/user-story`: frontend-design is invoked through the Skill tool (the old "/frontend-design" wording never fired during autorun). Also triggers on the `frontend-design` flag and on the first UI story of a project with no visual design yet.
 - `/epic-planning`: always flags `frontend-design` on the first UI story of a new project; autorun records the chosen design direction in `plan.md` so later stories follow it.
+- Autorun reads every skill file it uses up front. Each epic's code audit runs in full before the next epic starts and saves its report to `plans/<slug>/audit-epic-<id>.md`. `progress.json` points `audit` to that file instead of saying `done`, and records only what actually ran. Other session modes (e.g. lazy or minimal) can't skip workflow steps.
 - Autorun writes `progress.json` at explicit points (story start, built, blocked, audit done) instead of the vague "after every step".
 
 ## 1.1.0 — 2026-10-07
