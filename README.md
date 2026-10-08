@@ -1,15 +1,19 @@
 # orsicreative-skills
 
-Claude Code plugin marketplace. One plugin, `dev-workflow`, with five skills that chain together: plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result.
+Claude Code plugin marketplace with two plugins:
+
+- `dev-workflow`: five skills that chain together. Plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result.
+- `shopify-theme`: review skills for the Stardust Shopify theme.
 
 ## Install
 
 ```
 /plugin marketplace add orsicreative/claude-skills
 /plugin install dev-workflow@orsicreative-skills
+/plugin install shopify-theme@orsicreative-skills
 ```
 
-## Skills
+## dev-workflow skills
 
 ### `/project-planning <project>`
 Top of the chain. Breaks a whole project into ordered epics (by capability, never by layer), each with scope boundaries, dependencies, release (MVP or later) and the project-wide constraints every epic must respect. Ends with one self-contained `/epic-planning` block per epic, ready to paste, post to a tracker (Jira, ClickUp, Linear), or autorun in the same session: plan every epic, or go epic by epic, planning each one and building its stories before planning the next against the real code. Plans only, writes no code.
@@ -44,4 +48,13 @@ Line-by-line audit of a file, folder, PR or codebase. Works out what the code is
 
 ```
 /code-audit src/billing
+```
+
+## shopify-theme skills
+
+### `/core-web-vitals [target]`
+Reviews Liquid sections, JS modules or asset changes in the Stardust theme for Core Web Vitals, checking CLS first (the error-level gate in `lighthouserc.js`), then LCP, then TBT. Prefers CSS, HTML and server-rendered Liquid over JS fixes. If Chrome DevTools MCP and a preview URL are available it measures real numbers, otherwise it reviews statically. Reports `file:line`, the metric hurt, why, and a fix in house style; it doesn't edit files unless asked. With no target it reviews the current diff. It also triggers on its own after above-the-fold, image or dynamic-content changes.
+
+```
+/core-web-vitals sections/main-product.liquid
 ```
