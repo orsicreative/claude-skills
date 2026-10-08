@@ -1,6 +1,6 @@
 # orsicreative-skills
 
-Claude Code plugin marketplace. One plugin, `dev-workflow`, with five skills that chain together: plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result.
+Claude Code plugin marketplace. One plugin, `dev-workflow`, with five skills that chain together (plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result) and a standalone Core Web Vitals review.
 
 ## Install
 
@@ -40,8 +40,15 @@ Builds a feature from a user story, treating it as an outcome to reach rather th
 ```
 
 ### `/code-audit [target]`
-Line-by-line audit of a file, folder, PR or codebase. Works out what the code is *meant* to do, then fixes it toward that intent: bugs, security, performance, dead code, duplication, standards. Reports before touching anything, sorts fixes by risk, verifies as it goes, and ends with a coverage ledger. Say "audit only" to stop at the report. Also triggers on its own when you ask to review, harden or clean up code.
+Line-by-line audit of a file, folder, PR or codebase. Works out what the code is *meant* to do, then fixes it toward that intent: bugs, security, performance, dead code, duplication, standards. Reports before touching anything, sorts fixes by risk, verifies as it goes, and ends with a coverage ledger. Say "audit only" to stop at the report. With no target it audits your uncommitted changes, or asks if there are none. Also triggers on its own when you ask to review, harden or clean up code.
 
 ```
 /code-audit src/billing
+```
+
+### `/core-web-vitals [target]`
+Reviews front-end changes for LCP, CLS and INP. Uses the project's own budgets (`lighthouserc`, `budget.json`, bundle size limits, CLAUDE.md) when it has them, otherwise Google's "good" thresholds, and flags what a change adds even when the page total stays under budget. Prefers markup and CSS fixes over JS. Measures with Chrome DevTools MCP when a dev server or URL is available, otherwise reviews statically. Reports `file:line`, the metric hurt, why, and a fix in the project's conventions; it doesn't edit files unless asked. With no target it reviews the current diff. Also triggers on its own after image, above-the-fold, font, third-party script or interaction changes.
+
+```
+/core-web-vitals src/components/Hero.tsx
 ```
