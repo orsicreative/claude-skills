@@ -133,14 +133,14 @@ Never post or write anything without that explicit go-ahead.
 Once posted, offer two ways forward:
 
 - **One at a time (default):** they paste each block into `/user-story` when they're ready.
-- **Autorun:** you build the stories now, following the engineering review's build order. Read `../user-story/SKILL.md` (relative to this skill's base directory) and follow it for each story, using that story's block as its input. Before starting, ask once:
+- **Autorun:** you build the stories now, following the engineering review's build order. Read `../user-story/SKILL.md` (relative to this skill's base directory) and follow it for each story, using that story's block as its input. Before building anything, read every skill file this run uses (`../user-story/SKILL.md`, `../plan-review/SKILL.md`, `../code-audit/SKILL.md`), not when you reach that step. Every step here is required: no other mode or style active in the session (e.g. a "minimal" or "lazy" mode) may shorten or skip one. Before starting, ask once:
   - Stop for review after each story, or run through and review at the end?
   - Commit after each story (on a branch, one commit per story), or leave all changes uncommitted?
   - Keep a progress file at `plans/<epic-slug>/` (the default), so the run can be resumed if the session ends?
 
   Build one story at a time, even where the build order allows parallel work, so each story's safety check sees the code the previous one left. When `/user-story` stops (its safety check finds a break, or it needs a yes on a data model change, migration, permission or new dependency), autorun pauses there and asks. It never skips past. If the stories are in a tracker, move each one along as it's built.
 
-  Each story is built with its attention on its own block, and over a long run earlier work drops out of context, so stories drift into writing similar helpers, queries or views. When all the epic's stories are built, read `../code-audit/SKILL.md` and run it on everything this epic changed (the epic's diff plus the code it calls), focused on duplication and dead code. Apply its PRESERVING fixes (merging duplicates into one shared function, removing code nothing uses), verify, and commit them separately if commits are on. Its AMBIGUOUS items go in the final report, not into silent changes.
+  Each story is built with its attention on its own block, and over a long run earlier work drops out of context, so stories drift into writing similar helpers, queries or views. When all the epic's stories are built, and before the next epic starts, run `../code-audit/SKILL.md` in full (its line-by-line read, report before fixing, and coverage list) on everything this epic changed (the epic's diff plus the code it calls), focused on duplication and dead code. Apply its PRESERVING fixes (merging duplicates into one shared function, removing code nothing uses), verify, and commit them separately if commits are on. Its AMBIGUOUS items go in the final report, not into silent changes. Save the audit's report, with its coverage list, as `plans/<slug>/audit-epic-<id>.md` (`audit-project.md` for the project-wide one). An epic isn't `built` until that file exists. Passing tests don't replace the audit.
 
   **Progress file.** Unless they said no, keep two files in `plans/<epic-slug>/` (when run from `/project-planning`, use the project's folder):
   - `plan.md`: the approved plan, exactly as shown, with every paste block. Written once at the start and rewritten only when the plan changes (a reconcile, a refine).
@@ -148,22 +148,24 @@ Once posted, offer two ways forward:
     1. Story starts: its status to `building`.
     2. Story built (and committed, if commits are on): status `built`, its `commit`, and `next` to the following story.
     3. Story stops: status `blocked` with a note.
-    4. Epic's code audit finished: `audit` to `done`, epic status `built`.
+    4. Epic's code audit finished and its report saved: `audit` to the report's path, epic status `built`.
     5. A frontend-design pass sets the visual direction: add a short "Design direction" section to `plan.md` (palette, type, layout feel) so later stories and resumed sessions follow it.
 
-    If you notice you've built a story without writing `progress.json`, write it now before continuing. Shape:
+    Record only what actually ran, never what the plan says should be there. If you notice you've built a story without writing `progress.json`, write it now before continuing. Shape:
     ```json
     {
       "settings": { "reviewStops": "end", "commits": true, "branch": "reviews" },
       "epics": [
-        { "id": 1, "name": "Write a review", "status": "built", "audit": "done",
+        { "id": 1, "name": "Write a review", "status": "built", "audit": "plans/reviews/audit-epic-1.md",
           "stories": [ { "id": 1, "status": "built", "commit": "a1b2c3d" },
                        { "id": 2, "status": "blocked", "note": "needs a yes on the migration" } ] }
       ],
       "next": { "epic": 1, "story": 2 }
     }
     ```
-    Statuses: `planned`, `building`, `built`, `blocked` (with a note saying why). `audit` is `pending` or `done`.
+    Statuses: `planned`, `building`, `built`, `blocked` (with a note saying why). `audit` is `pending` or the saved report's path.
+
+    Resume checks include the audits: an epic marked `built` whose audit file is missing isn't built. Run its audit first.
 
   **Resuming.** If the person asks to resume, or `plans/` already has a run for this epic or project, read `plan.md` and `progress.json` instead of re-planning. Check `progress.json` against the code: are the commits there, and is the branch checked out? Say where the run stopped and anything that doesn't match, then continue from `next`. The pre-build check of the next story catches anything that changed in between.
 
