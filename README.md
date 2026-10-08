@@ -40,7 +40,7 @@ Builds a feature from a user story, treating it as an outcome to reach rather th
 ```
 
 ### `/code-audit [target]`
-Line-by-line audit of a file, folder, PR or codebase. Works out what the code is *meant* to do, then fixes it toward that intent: bugs, security, performance, dead code, duplication, standards. Reports before touching anything, sorts fixes by risk, verifies as it goes, and ends with a coverage ledger. Say "audit only" to stop at the report. Also triggers on its own when you ask to review, harden or clean up code.
+Line-by-line audit of a file, folder, PR or codebase. Works out what the code is *meant* to do, then fixes it toward that intent: bugs, security, performance, dead code, duplication, standards. Reports before touching anything, sorts fixes by risk, verifies as it goes, and ends with a coverage ledger. Say "audit only" to stop at the report. With no target it audits your uncommitted changes, or asks if there are none. Also triggers on its own when you ask to review, harden or clean up code.
 
 ```
 /code-audit src/billing

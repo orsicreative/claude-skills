@@ -2,6 +2,7 @@
 
 ## 1.2.0 — 2026-10-08
 - `/core-web-vitals`: reviews front-end changes for LCP, CLS and INP (not FID). Reads the project's own budgets and conventions first, falls back to Google's "good" thresholds, and judges what the change adds rather than the page total. Measures with Chrome DevTools MCP when a live target exists, reviews statically otherwise, and doesn't edit files unless asked.
+- `/code-audit`: takes an explicit target with an argument hint. With no target it audits the uncommitted changes, and asks when there are none instead of auditing the whole repo. `/core-web-vitals` asks the same way.
 
 ## 1.1.1 — 2026-10-08
 - `/user-story`: frontend-design is invoked through the Skill tool (the old "/frontend-design" wording never fired during autorun). Also triggers on the `frontend-design` flag and on the first UI story of a project with no visual design yet.

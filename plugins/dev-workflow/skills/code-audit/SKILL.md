@@ -1,7 +1,10 @@
 ---
 name: "code-audit"
 description: Full line-by-line code audit that reconstructs what the code is SUPPOSED to do, then fixes it toward that intent — bugs, correctness, security, performance, dead code, duplication, and poor standards. Use this whenever the user asks to audit, review, harden, clean up, refactor, modernize, "bring up to standard", tighten, or fix up a file, module, folder, PR, or codebase, or asks "what's wrong with this code" and wants it fixed — even if they only name one of the categories (e.g. "find the dead code", "is this secure", "optimize this"). Also use for legacy or inherited code the user doesn't fully trust.
+argument-hint: "src/billing, a file, a PR, or empty for the current diff"
 ---
+
+Audit target: $ARGUMENTS (if empty, whatever the user or calling skill named in the conversation; failing that, the uncommitted changes on the current branch; if there are none, ask what to audit instead of guessing)
 
 # Code Audit
 
@@ -27,7 +30,7 @@ Don't skip ahead to fixing. Fixes made before intent is understood are how audit
 
 Establish:
 
-- **Target**: files/dirs in scope, and what's explicitly out (vendored code, generated files, lockfiles, minified bundles, migrations already applied).
+- **Target**: files/dirs in scope (with no target given or named in the conversation, the uncommitted changes plus the code they call; never default to the whole repo), and what's explicitly out (vendored code, generated files, lockfiles, minified bundles, migrations already applied).
 - **Size**: count lines. If the target won't fit comfortably in context (roughly > 3–4k lines), split into passes by module and audit one pass at a time. Keep a coverage ledger (see §7) so "line by line" stays true rather than aspirational.
 - **Safety nets**: is it under version control with a clean tree? Are there tests, a linter config, a type checker, a build command? Find the commands that run them. These determine how aggressive fixes can be.
 - **Conventions**: read lint/format configs, `CLAUDE.md`, `CONTRIBUTING`, `.editorconfig`, and a few representative files. "Standards" means *this project's* standards first, the ecosystem's second, your taste never.

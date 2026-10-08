@@ -5,7 +5,7 @@ argument-hint: "src/components/Hero.tsx, a preview URL, or empty for the current
 allowed-tools: Read, Grep, Glob, Bash(git diff:*), Bash(git status:*), Bash(git log:*), mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__new_page, mcp__chrome-devtools__performance_start_trace, mcp__chrome-devtools__performance_stop_trace, mcp__chrome-devtools__performance_analyze_insight, mcp__chrome-devtools__lighthouse_audit, mcp__chrome-devtools__list_network_requests, mcp__chrome-devtools__take_screenshot
 ---
 
-Review target: $ARGUMENTS (if empty, the uncommitted changes on the current branch)
+Review target: $ARGUMENTS (if empty, whatever the user or calling skill named in the conversation; failing that, the uncommitted changes on the current branch; if there are none, ask what to review instead of guessing)
 
 # Core Web Vitals review
 
@@ -17,7 +17,7 @@ This is a review. Report findings and fixes; don't edit files unless the user as
 
 ## 1. Scope
 
-- No target given: review the change. Run `git status`, `git diff` and `git diff --staged`.
+- No target given: review the change. Run `git status`, `git diff` and `git diff --staged`. If nothing has changed, ask what to review.
 - A file or folder given: read it directly, plus whatever it renders into (layout, template, parent component) when that decides above-the-fold placement.
 - A URL given: measure it (step 4) and trace findings back to source if the code is in the repo.
 - Don't audit the whole site unless asked.
