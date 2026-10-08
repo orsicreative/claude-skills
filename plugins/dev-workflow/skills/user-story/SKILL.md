@@ -14,6 +14,12 @@ Treat it as the outcome to achieve, not as implementation instructions. Choosing
 2. Look at how similar things are already done in this codebase and follow those patterns.
 3. If acceptance criteria were provided with the story (e.g. from /epic-planning), use them as the starting point: sharpen them against the code you just looked at, add any that are clearly missing, and note any you changed. Otherwise write 3-6 acceptance criteria that describe what must be true for the user. Either way: outcomes only, no implementation detail. Show them in a short list, then continue. Don't wait for approval.
 4. Pick the simplest approach that satisfies those criteria and the CLAUDE.md rules.
+5. Check it's safe to build now. The plan was made before the code you're about to touch existed in its current form, so re-check it at the last moment. Run the checks in section 3 of `../plan-review/SKILL.md` (relative to this skill's base directory) for this one story. If that file isn't available, these are the minimum:
+   - Are the stories it depends on (its "Depends on" line) actually built?
+   - Does other work touch the same code? Look at sibling stories in the same epic (a "Shares code with" line, the epic plan, or the tracker), whether built, in progress or not started yet, and at other branches and open PRs (`git branch`, `gh pr list` if available). Two separate stories often change the same code (emailing an invoice and marking it paid both touch invoice status). Decide which one owns the shared change. Build only what this story needs, shaped so the other story can extend it instead of rewriting it.
+   - Would shipping this story on its own break a contract, need a migration in a set order, or leave the app half-changed or unsafe?
+
+   If something will break, stop and say what, with the `file:line`. Fixing it changes the plan (reorder, add a dependency, add a flag), and that's the person's call. If the collision is with another epic's work, call it a cross-epic finding: the epic order or boundaries need another look in the project plan, not a workaround inside this story. Risks you can handle inside the story (a compatibility step, a test around untested code) go into your approach and get noted under Decisions.
 
 ## Ask first only when
 
