@@ -6,7 +6,7 @@
     {
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
-      "description": "Epic planning, user-story implementation, and code audits."
+      "description": "Project and epic planning, plan review, user-story implementation, and code audits."
     }
   ]
 }
