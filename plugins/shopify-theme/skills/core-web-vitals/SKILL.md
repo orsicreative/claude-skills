@@ -23,6 +23,8 @@ This is a review. Report findings and fixes; don't edit files unless the user as
 
 Read `lighthouserc.js` for the actual thresholds instead of generic web advice. When last checked they were CLS ≤ 0.1 (error), LCP ≤ 4000ms (warn) and TBT ≤ 15000ms (warn). If the file says otherwise, the file wins. Note the change in your report.
 
+The TBT budget is deliberately loose. Third-party apps (SearchSpring, Swym, Rebuy) already put lab TBT above 600ms, so 15000ms only catches catastrophic regressions. Don't use it as the bar for a change. Judge what the change itself adds: a new long task (over 50ms) on load or on a key interaction is a finding, even when the page total stays far under budget. Lighthouse counts 200ms or less of TBT as good.
+
 CLS and accessibility are the two gates that block a merge here. Treat everything else as advisory. Accessibility is out of scope for this review.
 
 ## 3. Checklist, in priority order

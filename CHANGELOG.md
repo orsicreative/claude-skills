@@ -2,6 +2,7 @@
 
 ## shopify-theme 1.0.0 — 2026-10-08
 - New `shopify-theme` plugin with `/core-web-vitals`, converted from the `core-web-vitals` subagent. It runs in the main conversation, takes an optional target (file, folder, or the current diff by default), pre-approves only read-only git commands and the Chrome DevTools trace tools, and reviews without editing unless asked.
+- The theme's 15000ms TBT budget only flags catastrophic regressions, so the skill judges the blocking time a change adds (new long tasks over 50ms) instead of the page total.
 
 ## 1.1.1 — 2026-10-08
 - `/user-story`: frontend-design is invoked through the Skill tool (the old "/frontend-design" wording never fired during autorun). Also triggers on the `frontend-design` flag and on the first UI story of a project with no visual design yet.
