@@ -1,17 +1,12 @@
 {
   "name": "orsicreative-skills",
   "owner": { "name": "Jeffrey Schierer" },
-  "metadata": { "description": "Planning, building, auditing, and Shopify theme review skills for Claude Code." },
+  "metadata": { "description": "Planning, building, auditing, and performance review skills for Claude Code." },
   "plugins": [
     {
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
-      "description": "Project and epic planning, plan review, user-story implementation, and code audits."
-    },
-    {
-      "name": "shopify-theme",
-      "source": "./plugins/shopify-theme",
-      "description": "Review skills for the Stardust Shopify theme: Core Web Vitals (LCP, CLS, TBT)."
+      "description": "Project and epic planning, plan review, user-story implementation, code audits, and Core Web Vitals reviews."
     }
   ]
 }
