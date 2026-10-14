@@ -1,6 +1,6 @@
 {
   "name": "dev-workflow",
-  "version": "1.2.0",
-  "description": "Project and epic planning, plan review, user-story implementation, code audits, and Core Web Vitals reviews.",
+  "version": "1.3.0",
+  "description": "Project and epic planning, plan review, user-story implementation, code audits, Core Web Vitals reviews and accessibility audits.",
   "author": { "name": "Jeffrey Schierer" }
 }

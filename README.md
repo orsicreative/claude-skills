@@ -1,6 +1,6 @@
 # orsicreative-skills
 
-Claude Code plugin marketplace. One plugin, `dev-workflow`, with five skills that chain together (plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result) and a standalone Core Web Vitals review.
+Claude Code plugin marketplace. One plugin, `dev-workflow`, with five skills that chain together (plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result) and standalone Core Web Vitals review and accessibility audit.
 
 ## Install
 
@@ -51,4 +51,11 @@ Reviews front-end changes for LCP, CLS and INP. Uses the project's own budgets (
 
 ```
 /core-web-vitals src/components/Hero.tsx
+```
+
+### `/accessibility-audit [target]`
+Audits front-end changes against WCAG 2.2 AA, including the 2.2 additions (focus not obscured, dragging alternatives, target size, consistent help, redundant entry, accessible authentication). Reads the project's own bar first (CLAUDE.md, design system, `jsx-a11y`/axe/Lighthouse rules in CI) and flags hand-rolled dialogs, drawers or menus when a shared component exists. Prefers native HTML over ARIA and JS. Tests live with Chrome DevTools MCP when a dev server or URL is available (Lighthouse, accessibility tree, keyboard walk, 320 px reflow, reduced motion), otherwise reviews statically and lists what still needs a live or screen reader pass. Contrast that depends on CMS settings, runtime tokens or media is a manual check, not a fail. Reports `file:line`, criterion, severity and fix. Audit only, like `/core-web-vitals`: it doesn't edit files unless asked. With no target it audits the current diff and separates what the change introduced from what was already there.
+
+```
+/accessibility-audit src/components/Modal.tsx
 ```

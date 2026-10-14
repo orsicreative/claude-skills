@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0 — 2026-10-14
+- `/accessibility-audit`: audits front-end changes against WCAG 2.2 AA (no 4.1.1 Parsing). Stack-agnostic version of a Shopify-theme skill. Reads the project's own a11y bar first (CLAUDE.md, design system, lint and CI a11y rules) and flags hand-rolled versions of sanctioned components. Prefers native HTML over ARIA and JS. Tests live with Chrome DevTools MCP (Lighthouse, accessibility tree, keyboard walk, reflow, reduced motion) when a URL exists, reviews statically otherwise. Contrast set by CMS settings, runtime tokens or media is flagged as a manual check, not a fail. Doesn't edit files unless asked; with no target it audits the current diff.
+
 ## 1.2.0 — 2026-10-08
 - `/core-web-vitals`: reviews front-end changes for LCP, CLS and INP (not FID). Reads the project's own budgets and conventions first, falls back to Google's "good" thresholds, and judges what the change adds rather than the page total. Measures with Chrome DevTools MCP when a live target exists, reviews statically otherwise, and doesn't edit files unless asked.
 - `/code-audit`: takes an explicit target with an argument hint. With no target it audits the uncommitted changes, and asks when there are none instead of auditing the whole repo. `/core-web-vitals` asks the same way.
