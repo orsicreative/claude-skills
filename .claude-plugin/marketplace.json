@@ -1,12 +1,12 @@
 {
   "name": "orsicreative-skills",
   "owner": { "name": "Jeffrey Schierer" },
-  "metadata": { "description": "Planning, building, auditing, performance review and accessibility audit skills for Claude Code." },
+  "metadata": { "description": "Planning, building, auditing, performance review, accessibility audit and UX audit skills for Claude Code." },
   "plugins": [
     {
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
-      "description": "Project and epic planning, plan review, user-story implementation, code audits, Core Web Vitals reviews and accessibility audits."
+      "description": "Project and epic planning, plan review, user-story implementation, code audits, Core Web Vitals reviews, accessibility audits and UX audits."
     }
   ]
 }
