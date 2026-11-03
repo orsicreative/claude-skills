@@ -1,5 +1,7 @@
 # UX laws
 
+Based on [Laws of UX](https://lawsofux.com) by Jon Yablonski, rewritten as audit checks.
+
 Each law: what it says, what to look for in code or screenshots, and the usual fix. Laws are alphabetical so new ones can be appended in place. "Overlaps" names the other skill that owns the measurable part, so findings aren't reported twice.
 
 ## Choice overload
