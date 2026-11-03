@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.0 — 2026-11-03
+- `/ux-audit`: reviews front-end UI against UX laws (choice overload, chunking, cognitive load, Doherty threshold, Fitts's law, Hick's law, Jakob's law, common region, serial position effect). Laws live in `references/laws.md`, one section each, so more can be added without touching the process. Reads the project's own bar first (CLAUDE.md, design system, story acceptance criteria) and flags hand-rolled versions of shared patterns. Treats the laws as heuristics: likely-deliberate deviations are reported as questions, not defects. Reviews live with Chrome DevTools MCP (screenshots at desktop and phone width, click-through, feedback timing) when a URL exists, statically otherwise. Hands target size and contrast to `/accessibility-audit` and response time to `/core-web-vitals`. Doesn't edit files unless asked; with no target it audits the current diff.
+
 ## 1.3.0 — 2026-10-14
 - `/accessibility-audit`: audits front-end changes against WCAG 2.2 AA (no 4.1.1 Parsing). Stack-agnostic version of a Shopify-theme skill. Reads the project's own a11y bar first (CLAUDE.md, design system, lint and CI a11y rules) and flags hand-rolled versions of sanctioned components. Prefers native HTML over ARIA and JS. Tests live with Chrome DevTools MCP (Lighthouse, accessibility tree, keyboard walk, reflow, reduced motion) when a URL exists, reviews statically otherwise. Contrast set by CMS settings, runtime tokens or media is flagged as a manual check, not a fail. Doesn't edit files unless asked; with no target it audits the current diff.
 
