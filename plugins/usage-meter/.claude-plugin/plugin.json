@@ -1,0 +1,7 @@
+{
+  "name": "usage-meter",
+  "version": "0.1.0",
+  "description": "Shows your 5-hour and weekly usage limits above the prompt, with a pace tracker toward the weekly limit.",
+  "author": { "name": "Jeffrey Schierer" },
+  "types": "./types/index.d.ts"
+}

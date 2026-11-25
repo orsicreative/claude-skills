@@ -1,5 +1,8 @@
 # Changelog
 
+## usage-meter 0.1.0 — 2026-11-25
+- New plugin `usage-meter`: a mod showing the 5-hour and weekly usage windows above the prompt, with a weekly pace tracker (points vs an even week, projection at reset, red when on track to hit the limit), all on one line. Its own changelog is in `plugins/usage-meter/CHANGELOG.md`.
+
 ## 1.4.0 — 2026-11-03
 - `/ux-audit`: reviews front-end UI against UX laws (choice overload, chunking, cognitive load, Doherty threshold, Fitts's law, Hick's law, Jakob's law, common region, serial position effect), based on Laws of UX (lawsofux.com) by Jon Yablonski. Laws live in `references/laws.md`, one section each, so more can be added without touching the process. Reads the project's own bar first (CLAUDE.md, design system, story acceptance criteria) and flags hand-rolled versions of shared patterns. Treats the laws as heuristics: likely-deliberate deviations are reported as questions, not defects. Reviews live with Chrome DevTools MCP (screenshots at desktop and phone width, click-through, feedback timing) when a URL exists, statically otherwise. Hands target size and contrast to `/accessibility-audit` and response time to `/core-web-vitals`. Doesn't edit files unless asked; with no target it audits the current diff.
 
