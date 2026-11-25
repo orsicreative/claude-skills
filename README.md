@@ -1,12 +1,13 @@
 # orsicreative-skills
 
-Claude Code plugin marketplace. One plugin, `dev-workflow`, with five skills that chain together (plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result) and standalone Core Web Vitals review, accessibility audit and UX audit.
+Claude Code plugin marketplace. Two plugins: `dev-workflow`, with five skills that chain together (plan a project into epics, plan each epic into stories, check both plans against the code, build the stories, audit the result) and standalone Core Web Vitals review, accessibility audit and UX audit; and `usage-meter`, a mod that shows your usage limits above the prompt.
 
 ## Install
 
 ```
 /plugin marketplace add orsicreative/claude-skills
 /plugin install dev-workflow@orsicreative-skills
+/plugin install usage-meter@orsicreative-skills
 ```
 
 ## Skills
@@ -65,4 +66,13 @@ Reviews front-end UI against UX laws from [Laws of UX](https://lawsofux.com) by 
 
 ```
 /ux-audit src/pages/Checkout.tsx
+```
+
+## Mods
+
+### `usage-meter`
+A row above the prompt with your 5-hour and weekly usage windows (percent used, time to reset) and a weekly pace tracker: points ahead of or behind an even week, projected usage at reset, and a warning color when your current rate hits the limit before reset. All on one line, spread evenly across the row. Uses Claude Code's own palette and the ✻ mark, and pairs every color with a symbol or words. Shows nothing on accounts without usage limits. Details in [plugins/usage-meter/README.md](plugins/usage-meter/README.md).
+
+```
+✻ 5h ━━━──── 42% 1h 12m       7d ━━━━━─── 60% 3d 12h       pace ▲ +10 pts → 120%
 ```

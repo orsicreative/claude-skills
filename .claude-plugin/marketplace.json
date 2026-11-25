@@ -1,12 +1,17 @@
 {
   "name": "orsicreative-skills",
   "owner": { "name": "Jeffrey Schierer" },
-  "metadata": { "description": "Planning, building, auditing, performance review, accessibility audit and UX audit skills for Claude Code." },
+  "metadata": { "description": "Planning, building, auditing, performance review, accessibility audit and UX audit skills for Claude Code, plus a usage meter mod." },
   "plugins": [
     {
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
       "description": "Project and epic planning, plan review, user-story implementation, code audits, Core Web Vitals reviews, accessibility audits and UX audits."
+    },
+    {
+      "name": "usage-meter",
+      "source": "./plugins/usage-meter",
+      "description": "Shows your 5-hour and weekly usage limits above the prompt, with a pace tracker toward the weekly limit."
     }
   ]
 }
